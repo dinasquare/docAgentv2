@@ -344,6 +344,31 @@ class GeminiExtractor:
                     logger.logger.warning("Empty confidence response from Gemini")
                     return self._default_confidence_scores(extracted_data)
                 
+                # Clean up markdown formatting from Gemini response
+                if response_text.startswith('```json'):
+                    # Extract JSON from markdown code block
+                    start = response_text.find('{')
+                    end = response_text.rfind('}') + 1
+                    if start != -1 and end != 0:
+                        response_text = response_text[start:end]
+                    else:
+                        logger.logger.warning("Could not extract JSON from markdown response")
+                        return self._default_confidence_scores(extracted_data)
+                elif response_text.startswith('```'):
+                    # Handle other markdown blocks
+                    lines = response_text.split('\n')
+                    json_lines = []
+                    in_json = False
+                    for line in lines:
+                        if line.strip() == '```' and not in_json:
+                            in_json = True
+                            continue
+                        elif line.strip() == '```' and in_json:
+                            break
+                        elif in_json:
+                            json_lines.append(line)
+                    response_text = '\n'.join(json_lines).strip()
+                
                 confidence_scores = json.loads(response_text)
                 
                 # Validate confidence scores
