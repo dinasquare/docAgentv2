@@ -1,0 +1,29 @@
+INVOICE
+
+Invoice Number: INV-2024-001
+Date: March 15, 2024
+Due Date: April 15, 2024
+
+From:
+TechServices Inc.
+123 Business Street
+New York, NY 10001
+Tax ID: 12-3456789
+
+To:
+ABC Corporation
+456 Company Ave
+Los Angeles, CA 90210
+
+Description                    Qty    Rate      Amount
+Web Development Services       40     $150.00   $6,000.00
+Database Setup                 10     $200.00   $2,000.00
+Testing & QA                   20     $100.00   $2,000.00
+
+                              Subtotal: $10,000.00
+                              Tax (8%):    $800.00
+                              Total:   $10,800.00
+
+Payment Terms: Net 30 days
+Thank you for your business!
+

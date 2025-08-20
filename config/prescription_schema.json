@@ -1,0 +1,144 @@
+{
+  "type": "object",
+  "properties": {
+    "document_type": {
+      "type": "string",
+      "const": "prescription"
+    },
+    "prescription_number": {
+      "type": "string",
+      "description": "Prescription or Rx number"
+    },
+    "date_prescribed": {
+      "type": "string",
+      "format": "date",
+      "description": "Date prescribed in YYYY-MM-DD format"
+    },
+    "date_filled": {
+      "type": "string",
+      "format": "date",
+      "description": "Date filled in YYYY-MM-DD format"
+    },
+    "doctor": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Doctor/prescriber name"
+        },
+        "license_number": {
+          "type": "string",
+          "description": "Medical license number"
+        },
+        "practice": {
+          "type": "string",
+          "description": "Practice or clinic name"
+        },
+        "address": {
+          "type": "string",
+          "description": "Practice address"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Contact phone"
+        }
+      },
+      "required": ["name"]
+    },
+    "patient": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Patient name"
+        },
+        "date_of_birth": {
+          "type": "string",
+          "format": "date",
+          "description": "Patient date of birth"
+        },
+        "address": {
+          "type": "string",
+          "description": "Patient address"
+        }
+      },
+      "required": ["name"]
+    },
+    "pharmacy": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Pharmacy name"
+        },
+        "address": {
+          "type": "string",
+          "description": "Pharmacy address"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Pharmacy phone"
+        }
+      }
+    },
+    "medications": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Medication name"
+          },
+          "generic_name": {
+            "type": "string",
+            "description": "Generic medication name"
+          },
+          "strength": {
+            "type": "string",
+            "description": "Medication strength (mg, ml, etc.)"
+          },
+          "form": {
+            "type": "string",
+            "description": "Medication form (tablet, capsule, liquid, etc.)"
+          },
+          "quantity": {
+            "type": "string",
+            "description": "Quantity prescribed"
+          },
+          "directions": {
+            "type": "string",
+            "description": "Usage directions"
+          },
+          "refills": {
+            "type": "string",
+            "description": "Number of refills allowed"
+          },
+          "ndc_number": {
+            "type": "string",
+            "description": "NDC (National Drug Code) number"
+          }
+        },
+        "required": ["name", "strength", "quantity", "directions"]
+      }
+    },
+    "total_cost": {
+      "type": "number",
+      "description": "Total cost"
+    },
+    "insurance_covered": {
+      "type": "number",
+      "description": "Amount covered by insurance"
+    },
+    "patient_pay": {
+      "type": "number",
+      "description": "Amount patient pays"
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code"
+    }
+  },
+  "required": ["document_type", "prescription_number", "date_prescribed", "doctor", "patient", "medications"]
+}
+

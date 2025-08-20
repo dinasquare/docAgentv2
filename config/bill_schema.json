@@ -1,0 +1,121 @@
+{
+  "type": "object",
+  "properties": {
+    "document_type": {
+      "type": "string",
+      "const": "bill"
+    },
+    "bill_number": {
+      "type": "string",
+      "description": "Bill or account number"
+    },
+    "statement_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Statement date in YYYY-MM-DD format"
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Payment due date in YYYY-MM-DD format"
+    },
+    "service_provider": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Service provider name (utility company, bank, etc.)"
+        },
+        "address": {
+          "type": "string",
+          "description": "Provider address"
+        },
+        "contact": {
+          "type": "string",
+          "description": "Contact information"
+        }
+      },
+      "required": ["name"]
+    },
+    "customer": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Customer name"
+        },
+        "address": {
+          "type": "string",
+          "description": "Service address"
+        },
+        "account_number": {
+          "type": "string",
+          "description": "Account number"
+        }
+      },
+      "required": ["name"]
+    },
+    "billing_period": {
+      "type": "object",
+      "properties": {
+        "start_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Billing period start date"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Billing period end date"
+        }
+      }
+    },
+    "charges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "Charge description"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Charge amount"
+          },
+          "usage": {
+            "type": "string",
+            "description": "Usage details (kWh, minutes, etc.)"
+          }
+        },
+        "required": ["description", "amount"]
+      }
+    },
+    "previous_balance": {
+      "type": "number",
+      "description": "Previous balance"
+    },
+    "payments": {
+      "type": "number",
+      "description": "Payments made"
+    },
+    "current_charges": {
+      "type": "number",
+      "description": "Current period charges"
+    },
+    "total_amount_due": {
+      "type": "number",
+      "description": "Total amount due"
+    },
+    "minimum_payment": {
+      "type": "number",
+      "description": "Minimum payment required"
+    },
+    "currency": {
+      "type": "string",
+      "description": "Currency code"
+    }
+  },
+  "required": ["document_type", "bill_number", "statement_date", "service_provider", "total_amount_due"]
+}
+
