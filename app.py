@@ -399,7 +399,7 @@ def main():
             with col2:
                 # Show file preview if it's an image
                 if file_info['is_image']:
-                    st.image(uploaded_file, caption="Document Preview", use_column_width=True)
+                    st.image(uploaded_file, caption="Document Preview", use_container_width=True)
                 elif file_info['is_pdf']:
                     st.write("📄 PDF document uploaded (preview not available)")
     

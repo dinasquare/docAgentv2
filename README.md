@@ -30,8 +30,16 @@ A sophisticated document extraction system that uses Google's Gemini AI to extra
 
 ### Prerequisites
 - Python 3.8+
-- Conda environment manager
 - Gemini API key from Google AI Studio
+
+### 🚀 Quick Deploy to Streamlit Cloud
+1. Fork this repository
+2. Go to [share.streamlit.io](https://share.streamlit.io)
+3. Connect your GitHub repo
+4. Set `GEMINI_API_KEY` in environment variables
+5. Deploy!
+
+### 💻 Local Development
 
 ### Setup Instructions
 

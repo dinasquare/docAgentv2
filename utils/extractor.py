@@ -337,7 +337,14 @@ class GeminiExtractor:
                 return self._default_confidence_scores(extracted_data)
             
             try:
-                confidence_scores = json.loads(response['text'])
+                response_text = response['text'].strip()
+                
+                # Handle empty response
+                if not response_text:
+                    logger.logger.warning("Empty confidence response from Gemini")
+                    return self._default_confidence_scores(extracted_data)
+                
+                confidence_scores = json.loads(response_text)
                 
                 # Validate confidence scores
                 validated_scores = {}
@@ -349,9 +356,9 @@ class GeminiExtractor:
                 
                 return validated_scores
                 
-            except json.JSONDecodeError:
+            except json.JSONDecodeError as e:
                 logger.log_error("confidence_json_parsing", 
-                                Exception("Failed to parse confidence JSON"))
+                                Exception(f"Failed to parse confidence JSON: {response['text'][:100]}"))
                 return self._default_confidence_scores(extracted_data)
                 
         except Exception as e:
